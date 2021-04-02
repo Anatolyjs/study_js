@@ -1,13 +1,11 @@
-let money = 2000, 
-income = 'freelance', 
-addExpenses = 'Internet, taxi, communal flat',
-deposit = true, 
-mission = 20000, 
-period = 12, 
-budgetDay = money/30;
-console.log( typeof(money), typeof(income), typeof(deposit) );
-console.log(addExpenses.length);
-console.log('Период равен ' + period + ' месяцев');
-console.log('Цель заработать ' + mission + ' долларов');
-console.log(addExpenses.toLowerCase().split(', '));
-console.log(budgetDay);
+let num = 266219,res = 1;
+num = num.toString().split('');
+
+ for (let i=0; i< num.length; i++) {
+
+    res*=num[i];
+ }
+ console.log(res);
+ res = (res**3).toString();
+ console.log(res.substring(0,2));
+
