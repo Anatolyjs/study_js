@@ -8,57 +8,53 @@ const money = +prompt('Ваш месячный доход?'),
    expenses1 = prompt('Введите обязательную статью расходов?'),
    amount1 = +prompt('Во сколько это обойдется?'),
    expenses2 = prompt('Введите обязательную статью расходов?'),
-   amount2 = +prompt('Во сколько это обойдется?');
+   amount2 = +prompt('Во сколько это обойдется?'),
+   
+   showTypeOf = function(data) {
+      console.log( typeof(data) );
+   },
 
-const showTypeOf = function(data) {
-   console.log( typeof(data) );
-};
+   getExpensesMonth = function(amount1, amount2) {
+      return amount1 + amount2; 
+   }, 
 
-function getExpensesMonth(amount1, amount2) {
-   return amount1 + amount2; 
-} 
+   getAccomulateMonth = function (money, getExpensesMonth) {
+      return money - getExpensesMonth;
+   },
+   accumulateMonth = getAccomulateMonth(money, getExpensesMonth(amount1, amount2) ),
 
-function getAccomulateMonth(money, getExpensesMonth) {
-   return money - getExpensesMonth;
+   getTargetMonth = function (mission, accumulateMonth) {
+      return Math.ceil(mission / accumulateMonth);
+   },
+
+   budgetDay = Math.floor(accumulateMonth / 30),
+   getStatusIncome = function() {
+      if (budgetDay  >= 1200) {
+         console.log('У вас высокий уровень дохода');
+      } else if (budgetDay >= 600 && budgetDay < 1200) {
+         console.log('У вас средний уровень дохода');
+      } else if (budgetDay > 0 && budgetDay < 600) {
+         console.log('К сожалению, у вас уровень дохода ниже среднего');
+      } else if (budgetDay === 0) {
+         console.log('Ваш дневной бюджет равен 0! Нужно что-то с этим делать!');
+      } else {
+         console.log('Что-то пошло не так!');
+      }
+ };
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit); 
+
+console.log('Расходы за месяц составляют' + getExpensesMonth(amount1, amount2));
+console.log(addExpenses);
+if (accumulateMonth > 0) {
+console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulateMonth)  + ' месяцев');
+} else {
+   console.log('Вы не сможете накопить какую-то сумму при бюджете меньше 1');
 }
-console.log(getAccomulateMonth(money, getExpensesMonth(amount1, amount2)) );
-
-// const accumulateMonth = getAccomulateMonth(money, getExpensesMonth(amount1, amount2) ),
-//    budgetDay = Math.floor(accumulateMonth / 30),
-//    getStatusIncome = function() {
-//       if (budgetDay  >= 1200) {
-//          console.log('У вас высокий уровень дохода');
-//       } else if (budgetDay >= 600 && budgetDay < 1200) {
-//          console.log('У вас средний уровень дохода');
-//       } else if (budgetDay > 0 && budgetDay < 600) {
-//          console.log('К сожалению, у вас уровень дохода ниже среднего');
-//       } else if (budgetDay === 0) {
-//          console.log('Ваш дневной бюджет равен 0! Нужно что-то с этим делать!');
-//       } else {
-//          console.log('Что-то пошло не так!');
-//       }
-//  };
-
-// function getTargetMonth(mission, accumulateMonth) {
-//    return Math.ceil(mission / accumulateMonth);
-// }
-
-// showTypeOf(money);
-// showTypeOf(income);
-// showTypeOf(deposit); 
-
-// console.log('Расходы за месяц составляют' + getExpensesMonth(amount1, amount2));
-// console.log(addExpenses);
-// if (accumulateMonth > 0) {
-// console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulateMonth)  + ' месяцев');
-// } else {
-//    console.log('Вы не сможете накопить какую-то сумму при бюджете меньше 1');
-// }
-// console.log('Ваш бюджет на день составляет ' + budgetDay);
-// getStatusIncome();
-
-
-
+console.log('Ваш бюджет на день составляет ' + budgetDay);
+getStatusIncome();
 
 
 
