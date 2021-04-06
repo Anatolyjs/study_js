@@ -1,24 +1,32 @@
 'use strict';
-const money = prompt('Ваш месячный доход?'), 
+const money = +prompt('Ваш месячный доход?'), 
 income = 'freelance', 
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую').toLowerCase().split(', '),
 deposit = confirm('Есть ли у вас депозит в банке?'), 
 mission = 20000, 
 period = 12, 
 expenses1 = prompt('Введите обязательную статью расходов?'),
-expenses2 = prompt('Введите обязательную статью расходов?'),
 amount1 = +prompt('Во сколько это обойдется?'),
+expenses2 = prompt('Введите обязательную статью расходов?'),
 amount2 = +prompt('Во сколько это обойдется?'),
 budgetMonth = money - (amount1 + amount2),
-budgetDay = budgetMonth / 30;
+budgetDay = Math.floor(budgetMonth / 30);
+
 console.log( typeof(money), typeof(income), typeof(deposit) );
 console.log(addExpenses.length);
 console.log('Период равен ' + period + ' месяцев');
 console.log('Цель заработать ' + mission + ' долларов');
-console.log(addExpenses.toLowerCase().split(', '));
+console.log(addExpenses);
 console.log(budgetDay, addExpenses, budgetMonth);
-console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев');
-console.log( Math.floor(budgetDay) );
+
+if (budgetMonth > 0) {
+   console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев');
+} else {
+   console.log('Вы не сможете накопить какую-то сумму при бюджете меньше 1');
+}
+
+console.log(budgetDay);
+
 if (budgetDay  >= 1200) {
    console.log('У вас высокий уровень дохода');
 } else if (budgetDay >= 600 && budgetDay < 1200) {
