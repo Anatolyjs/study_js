@@ -16,7 +16,7 @@ console.log( typeof(money), typeof(income), typeof(deposit) );
 console.log(addExpenses.length);
 console.log('Период равен ' + period + ' месяцев');
 console.log('Цель заработать ' + mission + ' долларов');
-console.log(budgetDay, addExpenses, budgetMonth);
+console.log(addExpenses);
 
 if (budgetMonth > 0) {
    console.log('Цель будет достигнута за ' + Math.ceil(mission / budgetMonth) + ' месяцев');
