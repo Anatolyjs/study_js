@@ -21,7 +21,7 @@ const income = 'freelance',
 start();
 
 const showTypeOf = function(data) {
-      console.log( typeof(data) );
+   console.log( typeof(data) );
    },
 
    getExpensesMonth = function() {
@@ -35,31 +35,30 @@ const showTypeOf = function(data) {
       }
       return temp;
    };
-start();
 const ExpensesAmount = getExpensesMonth(),
 
-      getAccomulateMonth = function () {
-         return money - ExpensesAmount;
-      },
-      accumulateMonth = getAccomulateMonth(),
+   getAccomulateMonth = function () {
+      return money - ExpensesAmount;
+   },
+   accumulateMonth = getAccomulateMonth(),
 
-      getTargetMonth = function (mission, accumulateMonth) {
-         return Math.ceil(mission / accumulateMonth);
-      },
+   getTargetMonth = function (mission, accumulateMonth) {
+      return Math.ceil(mission / accumulateMonth);
+   },
 
-      budgetDay = Math.floor(accumulateMonth / 30),
-      getStatusIncome = function() {
-         if (budgetDay  >= 1200) {
-            console.log('У вас высокий уровень дохода');
-         } else if (budgetDay >= 600 && budgetDay < 1200) {
-            console.log('У вас средний уровень дохода');
-         } else if (budgetDay > 0 && budgetDay < 600) {
-            console.log('К сожалению, у вас уровень дохода ниже среднего');
-         } else if (budgetDay === 0) {
-            console.log('Ваш дневной бюджет равен 0! Нужно что-то с этим делать!');
-         } else {
-            console.log('Что-то пошло не так!');
-         }
+   budgetDay = Math.floor(accumulateMonth / 30),
+   getStatusIncome = function() {
+      if (budgetDay  >= 1200) {
+         console.log('У вас высокий уровень дохода');
+      } else if (budgetDay >= 600 && budgetDay < 1200) {
+         console.log('У вас средний уровень дохода');
+      } else if (budgetDay > 0 && budgetDay < 600) {
+         console.log('К сожалению, у вас уровень дохода ниже среднего');
+      } else if (budgetDay === 0) {
+         console.log('Ваш дневной бюджет равен 0! Нужно что-то с этим делать!');
+      } else {
+         console.log('Что-то пошло не так!');
+      }
    };
 
 showTypeOf(money);
