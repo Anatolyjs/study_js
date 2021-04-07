@@ -1,27 +1,46 @@
 'use strict';
-const money = +prompt('Ваш месячный доход?'), 
-   income = 'freelance', 
+let money; 
+const income = 'freelance', 
    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую').toLowerCase().split(', '),
    deposit = confirm('Есть ли у вас депозит в банке?'), 
    mission = 20000, 
    period = 12, 
-   expenses1 = prompt('Введите обязательную статью расходов?'),
-   amount1 = +prompt('Во сколько это обойдется?'),
-   expenses2 = prompt('Введите обязательную статью расходов?'),
-   amount2 = +prompt('Во сколько это обойдется?'),
-   
+   exspenses =[],
+   sum = [],
+
+   isNumber = function(n) {
+      return !isNaN( parseFloat(n) ) && isFinite(n);
+   },
+
+   start = function() {
+      do {
+      money = prompt('Ваш месячный доход?');
+      } while( !isNumber(money) ); 
+   },
+
    showTypeOf = function(data) {
       console.log( typeof(data) );
    },
 
-   getExpensesMonth = function(amount1, amount2) {
-      return amount1 + amount2; 
-   }, 
-
-   getAccomulateMonth = function (money, getExpensesMonth) {
-      return money - getExpensesMonth;
+   getExpensesMonth = function() {
+      let temp = 0;
+      for (let i = 0; i < 2; i++) {
+         exspenses[i] = prompt('Введите обязательную статью расходов?');
+         do {
+            sum[i] = prompt('Во сколько это обойдется?');
+         } while( !isNumber(sum[i]) ); 
+         temp += +sum[i];
+      }
+      console.log(temp);
+      return temp;
    },
-   accumulateMonth = getAccomulateMonth(money, getExpensesMonth(amount1, amount2) ),
+   ExpensesAmount = getExpensesMonth();
+   start();
+
+   const getAccomulateMonth = function () {
+      return money - ExpensesAmount;
+   },
+   accumulateMonth = getAccomulateMonth(),
 
    getTargetMonth = function (mission, accumulateMonth) {
       return Math.ceil(mission / accumulateMonth);
@@ -46,12 +65,12 @@ showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit); 
 
-console.log('Расходы за месяц составляют' + getExpensesMonth(amount1, amount2));
+console.log('Расходы за месяц составляют ' + ExpensesAmount);
 console.log(addExpenses);
 if (accumulateMonth > 0) {
 console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulateMonth)  + ' месяцев');
 } else {
-   console.log('Вы не сможете накопить какую-то сумму при бюджете меньше 1');
+   console.log('Цель не будет достигнута');
 }
 console.log('Ваш бюджет на день составляет ' + budgetDay);
 getStatusIncome();
