@@ -68,7 +68,7 @@ showTypeOf(deposit);
 console.log('Расходы за месяц составляют ' + ExpensesAmount);
 console.log(addExpenses);
 if (accumulateMonth > 0) {
-console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulateMonth)  + ' месяцев');
+   console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulateMonth)  + ' месяцев');
 } else {
    console.log('Цель не будет достигнута');
 }
