@@ -17,9 +17,10 @@ const income = 'freelance',
          money = +prompt('Ваш месячный доход?');
          console.log( money);
       } while( !isNumber(money) ); 
-   },
+   };
+start();
 
-   showTypeOf = function(data) {
+const showTypeOf = function(data) {
       console.log( typeof(data) );
    },
 
