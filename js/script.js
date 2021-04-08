@@ -1,11 +1,9 @@
 'use strict';
 const arr = ['123', '242', '533', '431', '7654', '2223', '42'];
-for (let i = 0; i < 7; i++) {
-   for (let y = 0; y < arr[i].length; y++) {
+for (let i = 0; i < arr.length; i++) {
       if ( arr[i][0] === '2' || arr[i][0] === '4') {
          console.log( arr[i] );
       }
-   }
 }
 // 2 задание
 function cheking(n) {
