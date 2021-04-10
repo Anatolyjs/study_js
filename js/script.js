@@ -22,20 +22,26 @@ glFun = function () {
             if ( isNumber(number) ) {
                counter--;
                if (number > x) {
-                  alert('Заданное число меньше');
+                  alert('Заданное число меньше, осталось попыток ' + counter);
                   start();
                } else if (number < x) {
-                  alert('Заданное число больше');
+                  alert('Заданное число больше, осталось попыток ' + counter);
                   start();
                } else if (number === x) {
-                  alert('Поздравляю! Вы угадали!');
+                  const questioning = confirm('Поздравляю! Вы угадали! Хотите сыграть еще?');
+                  if (questioning) {
+                    counter = 10;
+                    Math.floor(Math.random() * 100 + 1);
+                    start();
+                  } else {
+                    alert('До новых встреч!');
+                  }
                } 
             } else {
                alert('Введи число!');
                start();
             }
-         };
-         
+         }; 
          if (number === null) {
             alert('Игра окончена.');
          } else {
