@@ -27,7 +27,7 @@ const appData = {
        appData.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую').toLowerCase().split(', ');
        appData.deposit = confirm('Есть ли у вас депозит в банке?'); 
        for (let i = 0; i < 2; i++) {
-           let question = prompt('Введите обязательную статью расходов?'),
+           let question = prompt('Введите обязательную статью расходов?').toLowerCase(),
                exp;
             do {
                exp = +prompt('Во сколько это обойдется?');
