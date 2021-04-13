@@ -6,8 +6,8 @@ const isNumber = function(n) {
    start = function() {
       do {
          money = +prompt('Ваш месячный доход?');
-         console.log(money);
       } while( !isNumber(money) ); 
+      console.log(money);
    },
 
    isString = function(str) {
