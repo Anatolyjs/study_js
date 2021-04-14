@@ -132,36 +132,46 @@
 // }
 
 const button = document.getElementById("start"),
- buttonPlus = document.getElementsByTagName("button"),
- buttonPlus1 = buttonPlus[0],
- buttonPlus2 = buttonPlus[1],
+ buttonPlus1 = document.getElementsByTagName("button")[0],
+ buttonPlus2 = document.getElementsByTagName("button")[1],
  deposit = document.querySelector('#deposit-check'),
  additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
- additionalIncomeItem1 = additionalIncomeItem[0],
- additionalIncomeItem2 = additionalIncomeItem[1],
+ budgetMonth = document.getElementsByClassName('budget_month-value')[0],
+ budgetDay = document.getElementsByClassName('budget_day-value')[0],
+ exspensesMonth = document.getElementsByClassName('expenses_month-value')[0],
+ additionalIncome = document.getElementsByClassName('additional_income-value')[0],
+ additionalExpenses = document.getElementsByClassName('additional_expenses-value')[0],
+ incomePeriod = document.getElementsByClassName('income_period-value')[0],
+ targetMonth = document.getElementsByClassName('target_month-value')[0],
 
- budgetMonth = document.getElementsByClassName('result-total budget_month-value'),
- budgetDay = document.getElementsByClassName('result-total budget_day-value'),
- exspensesMonth = document.getElementsByClassName('result-total expenses_month-value'),
- additionalIncome = document.getElementsByClassName('result-total additional_income-value'),
- additionalExpenses = document.getElementsByClassName('result-total additional_expenses-value'),
- incomePeriod = document.getElementsByClassName('result-total income_period-value'),
- targetMonth = document.getElementsByClassName('result-total target_month-value'),
+ salaryAmount = document.querySelector('.salary-amount'),
+ incomeTitle = document.querySelector('.income-items .income-title '),
+ incomeAmount = document.querySelector('.income-amount'),
+ expensesTitle = document.querySelector('.expenses-items .expenses-title'),
+ expensesInputAmount = document.querySelector('.expenses-amount'),
+ additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+ targetAmount = document.querySelector('.target-amount'),
+ range = document.querySelector('.period-select');
 
- moneyInput = document.querySelectorAll('input')[0],
- incomeInputName = document.querySelectorAll('input')[1],
- incomeInputAmount = document.querySelectorAll('input')[2],
- expensesInputName = document.querySelectorAll('input')[5],
- expensesInputAmount = document.querySelectorAll('input')[6],
- possibleExspensesInputName = document.querySelectorAll('input')[7],
- targetInput = document.querySelectorAll('input')[11],
- range = document.querySelectorAll('input')[12];
-
- console.log(buttonPlus1, buttonPlus2, deposit, additionalIncomeItem1, additionalIncomeItem2, budgetMonth,
-     budgetDay, exspensesMonth, additionalIncome, additionalExpenses, incomePeriod, targetMonth, moneyInput, 
-     incomeInputName, incomeInputAmount, expensesInputName, expensesInputAmount, possibleExspensesInputName,
-     targetInput, range);
-
+console.log(buttonPlus1);
+console.log(buttonPlus2);
+console.log(deposit);
+console.log(additionalIncomeItem);
+console.log(budgetMonth);
+console.log(budgetDay);
+console.log(exspensesMonth);
+console.log(additionalIncome);
+console.log(additionalExpenses);
+console.log(incomePeriod);
+console.log(targetMonth);
+console.log(salaryAmount);
+console.log(incomeTitle);
+console.log(incomeAmount);
+console.log(expensesTitle);
+console.log(expensesInputAmount);
+console.log(additionalExpensesItem);
+console.log(targetAmount);
+console.log(range);
 
 
 
