@@ -157,8 +157,10 @@ const button = document.getElementById("start"),
  targetInput = document.querySelectorAll('input')[11],
  range = document.querySelectorAll('input')[12];
 
- console.log(moneyInput, incomeInputName, incomeInputAmount, expensesInputName, expensesInputAmount,
-     possibleExspensesInputName, targetInput, range);
+ console.log(buttonPlus1, buttonPlus2, deposit, additionalIncomeItem1, additionalIncomeItem2, budgetMonth,
+     budgetDay, exspensesMonth, additionalIncome, additionalExpenses, incomePeriod, targetMonth, moneyInput, 
+     incomeInputName, incomeInputAmount, expensesInputName, expensesInputAmount, possibleExspensesInputName,
+     targetInput, range);
 
 
 
