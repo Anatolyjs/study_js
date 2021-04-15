@@ -7,11 +7,11 @@ const books = document.querySelector('.books'),
     chapterFifthBook = book[5].querySelectorAll('li'),
     chapterSixsBook = book[2].querySelectorAll('li'),
     newChapter = document.createElement('li'),
-    book4Style = book[4].querySelector('h2').innerHTML = '<a target=_blank href=https://github.com/azat-io/you-dont-know-js-ru/blob/master/this%20%26%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes>Книга 3. this и Прототипы Объектов</a>';
+    book4Style = book[4].querySelector('h2 a ').textContent = '3. this и Прототипы Объектов';
 books.prepend( book[1] );
 books.append( book[2] );
 book[0].after( book[4] );
-document.body.style.backgroundImage = 'url(./image/adv.jpg)';
+document.body.style.backgroundImage = 'url(./image/open_book.jpg)';
 advertising.remove();
 console.log(book);
 // вторая книга
