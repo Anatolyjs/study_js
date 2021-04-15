@@ -62,6 +62,7 @@ const appData = {
         appData.getExpenses();
         appData.getIncome();
         appData.getExpensesMonth();
+        appData.getIncomeMonth();
         appData.getAddExpenses(); 
         appData.getAddIncome();
         appData.getBudget();
@@ -110,10 +111,10 @@ const appData = {
 
     getExpenses: function() {
         expensesItems.forEach( function(item) {
-        let itemExpenses = item.querySelector('.expenses-title').value,
-            cashExpenses = +item.querySelector('.expenses-amount').value;
-        if (itemExpenses !== '' && cashExpenses !== '') {
-            appData.expenses[itemExpenses] = cashExpenses;
+            let itemExpenses = item.querySelector('.expenses-title').value,
+                cashExpenses = +item.querySelector('.expenses-amount').value;
+            if (itemExpenses !== '' && cashExpenses !== '') {
+                appData.expenses[itemExpenses] = cashExpenses;
         } 
         } );
     },
@@ -122,16 +123,14 @@ const appData = {
             let itemIncome = item.querySelector('.income-title').value,
                 cashIncome = +item.querySelector('.income-amount').value;
             if (itemIncome !== '' && cashIncome !== '') {
-                appData.income[itemIncome] = cashIncome;
-            }
-            for (let key in appData.income) {
-                appData.incomeMonth += +appData.income[key];
+                appData.income[itemIncome] = +cashIncome;
             }
         }) ;
     },
 
     getAddExpenses: function() {
-        let addExpenses = additionalExpensesItem.value.split(', ');
+        let addExpenses = additionalExpensesItem.value;
+        addExpenses = addExpenses.split(', ');
         addExpenses.forEach( function(item) {
             item = item.trim();
             if (item !== '') {
@@ -158,6 +157,11 @@ const appData = {
             appData.moneyDeposit = +prompt('Какая сумма заложена?');
          } while( !isNumber(appData.moneyDeposit) );
       }  
+   },
+   getIncomeMonth: function() {
+        for (let key in appData.income) {
+            appData.incomeMonth += appData.income[key];
+        }
    },
 
    getExpensesMonth: function() {
@@ -204,5 +208,3 @@ buttonPlus2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus1.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.getPeriodSelect);
 
-
- 
