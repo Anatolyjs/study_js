@@ -1,5 +1,6 @@
 'use strict';
-
+let expensesItems = document.querySelectorAll('.expenses-items'),
+    incomeItems = document.querySelectorAll('.income-items ');
 const start = document.getElementById("start"),
     buttonPlus1 = document.getElementsByTagName("button")[0],
     buttonPlus2 = document.getElementsByTagName("button")[1],
@@ -18,13 +19,10 @@ const start = document.getElementById("start"),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
-    titlePeriodAmount = document.querySelector('.period-amount');
-let expensesItems = document.querySelectorAll('.expenses-items'),
-    incomeItems = document.querySelectorAll('.income-items ');
-const isNumber = function(n) {
-    return !isNaN( parseFloat(n) ) && isFinite(n) && n !== 0;
-},
-   
+    titlePeriodAmount = document.querySelector('.period-amount'),
+    isNumber = function(n) {
+        return !isNaN( parseFloat(n) ) && isFinite(n) && n !== 0;
+    },
 
    isString = function(str) {
       let counterNumbers = 0,
@@ -55,6 +53,10 @@ const appData = {
    budgetMonth: 0,
    exspensesMonth: 0,
 
+   blockButton: function() {
+       start.disabled = true;
+    },
+
    start: function() {
         appData.budget = +salaryAmount.value;
         appData.getExpenses();
@@ -65,9 +67,11 @@ const appData = {
         appData.getBudget();
         appData.showResult();
     },
+   
     getIncomePeriodValue: function() {
         incomePeriodValue.value = appData.calcSavedMoney();
     },
+
     showResult: function() {
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = Math.floor(appData.budgetDay);
@@ -189,7 +193,12 @@ const appData = {
       return appData.budgetMonth * periodSelect.value;
    }
 };
-
+appData.blockButton();
+salaryAmount.addEventListener('input', function() {
+    if (salaryAmount.value !== '' && salaryAmount.value.length > 0) {
+        start.disabled = false;
+    }
+} );
 start.addEventListener('click', appData.start);
 buttonPlus2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus1.addEventListener('click', appData.addIncomeBlock);
