@@ -11,7 +11,7 @@ const books = document.querySelector('.books'),
 books.prepend( book[1] );
 books.append( book[2] );
 book[0].after( book[4] );
-document.body.style.backgroundImage = 'url(./image/open_book.jpg)';
+document.body.style.backgroundImage = 'url(./image/you-dont-know-js.jpg)';
 advertising.remove();
 console.log(book);
 // вторая книга
