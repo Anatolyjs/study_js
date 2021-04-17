@@ -1,5 +1,4 @@
 'use strict';
-let check = true;
 let expensesItems = document.querySelectorAll('.expenses-items'),
     incomeItems = document.querySelectorAll('.income-items ');
 const start = document.getElementById("start"),
@@ -65,8 +64,8 @@ const start = document.getElementById("start"),
         },
 
         blockButton: function() {
-            start.disabled = check;
-            },
+            start.disabled = true;
+        },
 
         start: function() {
             appData.budget = +salaryAmount.value;
@@ -227,15 +226,11 @@ appData.checkingInputName();
 appData.checkingInputAmount();
 salaryAmount.addEventListener('input', function() {
     if (salaryAmount.value !== '' && salaryAmount.value.length > 0) {
-        start.disabled = !check;
+        start.disabled = false;
+    } else if (salaryAmount.value === '' && salaryAmount.value.length === 0) {
+        start.disabled = true;
     }
-    salaryAmount.addEventListener('input', function () {
-        if (salaryAmount.value == '' && salaryAmount.value.length < 1) {
-            start.disabled = true;
-        } else {
-            start.disabled = false; 
-        }
-    } );
+   
    
 } );
 start.addEventListener('click', appData.start);
