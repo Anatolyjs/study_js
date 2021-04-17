@@ -21,6 +21,7 @@ const todoControl = document.querySelector('.todo-control'),
     render = function() {
         todoList.textContent = '';
         todoCompleted.textContent = '';
+
         todoData.forEach( function(item) {
             const li = document.createElement('li');
             li.classList.add('todo-item');
@@ -29,24 +30,38 @@ const todoControl = document.querySelector('.todo-control'),
                 '<button class="todo-remove"></button>' +
                 '<button class="todo-complete"></button>' +
             '</div>';
-            todoList.append(li);
+
             if (item.completed) {
                 todoCompleted.append(li);
             } else {
                 todoList.append(li);
             }
-
+            const btnCompleted = li.querySelector('.todo-complete'),
+                btnRemoved = li.querySelector('.todo-revome');
+            btnCompleted.addEventListener('click', function() {
+                item.completed = !item.completed;
+                render();
+            } );
+            // btnRemoved.addEventListener('click', function() {
+            //     item.remove()
+            //     render();
+            // } );
+            
         } );
         
     };
 
     todoControl.addEventListener('submit', function(event) {
         event.preventDefault();
-        const newTodo = {
-            value: headerInput.value,
-            completed: false
-        };
-        todoData.push(newTodo);
-        render();
-
+        headerInput.value = headerInput.value.trim();
+        if (headerInput.value !== '') {
+            const newTodo = {
+                value: headerInput.value,
+                completed: false
+            };
+            todoData.push(newTodo);
+            render();
+        }
+        headerInput.value = '';
     } );
+    render();
