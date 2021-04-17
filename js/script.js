@@ -44,6 +44,7 @@ const todoControl = document.querySelector('.todo-control'),
             } );    
             const btnDelete = li.querySelector('.todo-remove');
             btnDelete.addEventListener('click', function() {
+                console.log(item);
                 let numb = todoData.indexOf(item);
                 todoData.splice(numb, item);
                 render();
