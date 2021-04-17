@@ -232,5 +232,4 @@ salaryAmount.addEventListener('input', function() {
 start.addEventListener('click', appData.start);
 buttonPlus2.addEventListener('click', appData.addExpensesBlock);
 buttonPlus1.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('change', appData.getPeriodSelect);
-
+periodSelect.addEventListener('input', appData.getPeriodSelect);
