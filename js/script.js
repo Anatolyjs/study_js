@@ -46,7 +46,7 @@ const todoControl = document.querySelector('.todo-control'),
             btnDelete.addEventListener('click', function() {
                 console.log(item);
                 let numb = todoData.indexOf(item);
-                todoData.splice(numb, item);
+                todoData.splice(numb, 1);
                 render();
             } );
         } );
