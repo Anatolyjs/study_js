@@ -5,6 +5,7 @@ const todoControl = document.querySelector('.todo-control'),
     todoList = document.querySelector('.todo-list'),
     todoCompleted = document.querySelector('.todo-completed'),
 
+
     todoData = [
         {
             value: 'Сварить кофе',
@@ -36,17 +37,17 @@ const todoControl = document.querySelector('.todo-control'),
             } else {
                 todoList.append(li);
             }
-            const btnCompleted = li.querySelector('.todo-complete'),
-                btnRemoved = li.querySelector('.todo-revome');
+            const btnCompleted = li.querySelector('.todo-complete');
             btnCompleted.addEventListener('click', function() {
                 item.completed = !item.completed;
                 render();
+            } );    
+            const btnDelete = li.querySelector('.todo-remove');
+            btnDelete.addEventListener('click', function() {
+                let numb = todoData.indexOf(item);
+                todoData.splice(numb, item);
+                render();
             } );
-            // btnRemoved.addEventListener('click', function() {
-            //     item.remove()
-            //     render();
-            // } );
-            
         } );
         
     };
