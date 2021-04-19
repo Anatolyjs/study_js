@@ -72,7 +72,8 @@ const start = document.getElementById("start"),
         start: function() {
             start.style.display = 'none';
             
-            const inputs = document.querySelectorAll('input[type="text"]');
+            const inputs = document.querySelectorAll('input[type="text"]'),
+                bind = this.reset.bind(this);
             inputs.forEach( function(item) {
                 
                 item.disabled = true;
@@ -87,27 +88,22 @@ const start = document.getElementById("start"),
             this.getAddIncome();
             this.getBudget();
             this.showResult();
-            cancel.addEventListener('click', this.reset);
+            cancel.addEventListener('click', bind);
             cancel.style.display = 'block';
         },
 
         reset: function() {
-            for (let key in appData) {
-                switch( typeof key) {
-                    case 'number':
-                        appData[key] = 0;
-                        break;
-                    case 'boolean':
-                        appData[key] = false;
-                        break;
-                    case 'object':
-                        appData[key] = null;
-                        break;
-                    default:
-                        continue;
-
-                }
-            }
+                this.incomeMonth = 0;
+                this.budget = 0;
+                this.budgetDay = 0;
+                this.budgetMonth = 0;
+                this.exspensesMonth = 0;
+                this.income = {};
+                this.addIncome = [];
+                this.expenses = {};
+                this.addExpenses = [];
+                this.deposit = false;
+    
             cancel.style.display = 'none';
             let expensesItem = document.querySelectorAll('.expenses-items'),
                 incomeItem = document.querySelectorAll('.income-items '),
@@ -116,12 +112,12 @@ const start = document.getElementById("start"),
             while( expensesItem.length > 1) {
                 let elem = document.querySelector('.expenses-items');
                 elem.remove();
-                expensesItem = document.querySelectorAll('.expenses-items')
+                expensesItem = document.querySelectorAll('.expenses-items');
             }
             while( incomeItem.length > 1) {
                 let elem = document.querySelector('.income-items');
                 elem.remove();
-                incomeItem = document.querySelectorAll('.income-items')
+                incomeItem = document.querySelectorAll('.income-items');
             }
 
             buttonPlus1.style.display = 'block';
@@ -134,6 +130,7 @@ const start = document.getElementById("start"),
                 item.value = '';
             } );
             start.style.display = 'block';
+            this.blockButton();
         },
         
         getIncomePeriodValue: function() {
@@ -141,7 +138,7 @@ const start = document.getElementById("start"),
         },
 
         showResult: function() {
-            budgetMonthValue.value = appData.budgetMonth;
+            budgetMonthValue.value = this.budgetMonth;
             budgetDayValue.value = Math.floor(this.budgetDay);
             exspensesMonthValue.value = this.exspensesMonth;
             additionalExpensesValue.value = this.addExpenses.join(', ');
@@ -158,7 +155,7 @@ const start = document.getElementById("start"),
         },
 
         addExpensesBlock: function() {
-        
+            expensesItems = document.querySelectorAll('.expenses-items');
             let cloneExpensesItem = expensesItems[0].cloneNode(true);  
             cloneExpensesItem.querySelectorAll('input').forEach( function(item) {
                 item.value = '';
@@ -175,6 +172,7 @@ const start = document.getElementById("start"),
         },
 
         addIncomeBlock: function() {
+            incomeItems = document.querySelectorAll('.income-items ');
             let cloneIncomeItem = incomeItems[0].cloneNode(true);
             cloneIncomeItem.querySelectorAll('input').forEach( function(item) {
                 item.value = '';
