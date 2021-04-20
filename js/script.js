@@ -237,7 +237,7 @@ const start = document.getElementById("start"),
         },
 
         getIncomeMonth: function() {
-                for (let key in appData.income) {
+                for (let key in this.income) {
                     this.incomeMonth += this.income[key];
                 }
         },
