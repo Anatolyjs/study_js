@@ -64,14 +64,14 @@ class AppData {
     }
 
     changePercent() {
-        
         const valueSelect = this.value;
         if (valueSelect === `other`) {
             depositPercent.addEventListener(`change`, () => {
                 if (depositPercent.value !== '' && +depositPercent.value > 0 && +depositPercent.value <= 100 ) {
-
+                    start.disabled = false;
                 } else  {
                     alert(`Введите корректное значение в поле проценты`);
+                    console.log('опять');
                     depositPercent.value = ``;
                     start.disabled = true;
                 }
@@ -94,6 +94,9 @@ class AppData {
             this.deposit = true;
             depositBank.addEventListener(`change`, this.changePercent);
         } else {
+            if (salaryAmount.value !== '' && salaryAmount.value.length > 0) {
+                start.disabled = false;
+            }
             depositPercent.style.display =`none`;
             depositBank.style.display = `none`;
             depositAmount.style.display = `none`;
