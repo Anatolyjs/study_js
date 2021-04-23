@@ -66,22 +66,18 @@ class AppData {
     changePercent() {
         const valueSelect = this.value;
         if (valueSelect === `other`) {
-            depositPercent.addEventListener(`change`, () => {
-                if (depositPercent.value !== '' && +depositPercent.value > 0 && +depositPercent.value <= 100 ) {
-                    start.disabled = false;
-                } else  {
-                    alert(`Введите корректное значение в поле проценты`);
-                    console.log('опять');
-                    depositPercent.value = ``;
-                    start.disabled = true;
-                }
-            });
             depositPercent.value = ``;
             depositPercent.style.display = `inline-block`;
+            depositPercent.addEventListener('input', () => {
+                depositPercent.value = depositPercent.value.replace(/[^0-9]/,``);
+                if (+depositPercent.value < 0) {
+                    depositPercent.value = 0;
+                } else if (+depositPercent.value > 100) {
+                    depositPercent.value = 100;
+                }
+            });
         } else {
-            if (salaryAmount.value !== '' && salaryAmount.value.length > 0) {
-                start.disabled = false;
-            }
+            depositPercent.removeEventListener('input', () => {});
             depositPercent.style.display = `none`;
             depositPercent.value = valueSelect;
         }
@@ -93,6 +89,7 @@ class AppData {
             depositAmount.style.display = `inline-block`;
             this.deposit = true;
             depositBank.addEventListener(`change`, this.changePercent);
+           
         } else {
             if (salaryAmount.value !== '' && salaryAmount.value.length > 0) {
                 start.disabled = false;
@@ -121,8 +118,8 @@ class AppData {
         });
     
         start.addEventListener(`click`, this.start.bind(this));
-        buttonPlus2.addEventListener(`click`, this.addIncomeBlock.bind(this));
-        buttonPlus1.addEventListener(`click`, this.addExpensesBlock.bind(this));
+        buttonPlus2.addEventListener(`click`, this.addExpensesBlock.bind(this));
+        buttonPlus1.addEventListener(`click`, this.addIncomeBlock.bind(this));
         periodSelect.addEventListener(`input`, this.getPeriodSelect);
         depositCheck.addEventListener(`change`, this.depositHandler.bind(this));    
     }
