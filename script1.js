@@ -12,7 +12,6 @@ const showAll = function() {
                 newYearDays = Math.ceil((dateNewYear - dateNow.getTime()) / 1000 / 60 / 60 / 24),
                 dayWeek = dateNow.getDay(),
                 time = dateNow.toLocaleTimeString();
-            console.log(newYearDays);
             return {time, dayWeek, dateNewYear, newYearDays};
         },
 
