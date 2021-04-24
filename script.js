@@ -14,20 +14,33 @@ window.addEventListener('DOMContentLoaded', function() {
                 minutes = Math.floor((timeRemaining / 60) % 60),
                 hours = Math.floor(timeRemaining / 60 / 60);
                 
-            return {hours, timeRemaining, minutes, seconds};
+            return {hours, timeRemaining, minutes, seconds, dateNow, dateStop};
+        }
+        function addZero(temp) {
+            temp = String(temp);
+            if (temp.length === 1) {
+                temp = '0' + temp;
+            }
+            return temp;
         }
         
         function updateClock() {
             let timer = getTimeRemaning();
-            
-            timerHours.textContent = timer.hours;
-            timerMinutes.textContent = timer.minutes;
-            timerSeconds.textContent = timer.seconds;
-            if (timer.timeRemaining > 0) {
-                setTimeout(updateClock, 1000);
-            }
+            if (timer.dateStop < timer.dateNow) {
+                timerHours.textContent = '00';
+                timerMinutes.textContent = '00';
+                timerSeconds.textContent = '00';
+            } else {
+                timerHours.textContent = addZero(timer.hours);
+                timerMinutes.textContent = addZero(timer.minutes);
+                timerSeconds.textContent = addZero(timer.seconds);
+    
+                return timer.timeRemaining;
+            }   
         }
-        updateClock();
+        if (updateClock() > 0) {
+            setInterval(updateClock, 1000);
+        }
     }
-    countTimer('1 may 2021');
+    countTimer('23 april 2021');
 });
