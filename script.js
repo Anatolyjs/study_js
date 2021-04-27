@@ -16,16 +16,14 @@ window.addEventListener('DOMContentLoaded', function() {
                     
             return {hours, timeRemaining, minutes, seconds, dateNow, dateStop};
         },
-
         addZero = (temp) => {
             temp = String(temp);
             if (temp.length === 1) {
                 temp = '0' + temp;
             }
-
             return temp;
         },
-        
+    
         updateClock = () => {
             let timer = getTimeRemaning();
             if (timer.dateStop < timer.dateNow) {
@@ -36,14 +34,15 @@ window.addEventListener('DOMContentLoaded', function() {
                 timerHours.textContent = addZero(timer.hours);
                 timerMinutes.textContent = addZero(timer.minutes);
                 timerSeconds.textContent = addZero(timer.seconds);
-        
+    
                 return timer.timeRemaining;
             }   
         };
-
+        
         if (updateClock() > 0) {
             setInterval(updateClock, 1000);
         }
+
     },
 
         // меню
@@ -56,7 +55,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 menu.classList.toggle('active-menu');
             } else if (!target.closest('menu')){
                 menu.classList.remove('active-menu');
-                }
+            }
         });
     },
 
@@ -103,7 +102,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (!target) {
                     popup.style.display = 'none';
                 }
-            }   
+            }  
         });
     },
 
@@ -160,9 +159,9 @@ window.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }   
-        });
-        
+        }); 
     };
+
 
     countTimer('25 april 2021');
     togleMenu();
