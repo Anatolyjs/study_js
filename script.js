@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (target.closest('menu>a[href*="#"') || target.closest('menu>ul>li>a[href*="#"') || target.closest('div>.menu')) {
                     menu.classList.toggle('active-menu');
                 } else if (!target.closest('menu')){
-                    menu.classList.toggle('active-menu');
+                    menu.classList.remove('active-menu');
                  }
             });
         },
