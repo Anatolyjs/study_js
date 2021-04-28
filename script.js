@@ -165,15 +165,25 @@ window.addEventListener('DOMContentLoaded', function() {
     //Слайдер
     slider = () => {
         const slide = document.querySelectorAll('.portfolio-item'),
-            btn = document.querySelectorAll('.portfolio-btn'),
-            dot = document.querySelectorAll('.dot'),
+            portfolioDots = document.querySelector('.portfolio-dots'),
             slider = document.querySelector('.portfolio-content');
 
         let currentSlide = 0,
-            interval;
+            interval,
+            dot;
 
         const prevSlide = (elem, index, strClass) => {
             elem[index].classList.remove(strClass);
+        },
+
+        createDot = () => {
+            for (let i = 0; i < slide.length; i++) {
+                const li = document.createElement('li');
+                li.classList.add('dot');
+                portfolioDots.append(li);
+            }
+
+            dot = portfolioDots.querySelectorAll('.dot');
         },
 
         nextSlide = (elem, index, strClass) => {
@@ -198,6 +208,7 @@ window.addEventListener('DOMContentLoaded', function() {
         stopSlide = () => { 
             clearInterval(interval);
         };
+        createDot();
 
         slider.addEventListener('click', (event) => {
             event.preventDefault();
@@ -215,6 +226,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 currentSlide++;
             } else if (target.matches('#arrow-left')) {
                 currentSlide--;
+            
             } else if (target.matches('.dot')) {
                 dot.forEach((elem, index) => {
                     if (elem === target) {
