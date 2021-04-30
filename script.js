@@ -270,8 +270,14 @@ window.addEventListener('DOMContentLoaded', function() {
     tabs();
     slider();
 
+    const command = document.querySelectorAll('.command .container .row .col-md-4 img');
+    command.forEach((item) => {
+        item.addEventListener('mouseenter', (event) => {
+            event.target.src = event.target.dataset.img;
+            console.log(event.target.src);
+        });
+    });
 
-
-
-
+    
+ 
 });
