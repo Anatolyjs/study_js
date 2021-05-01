@@ -348,7 +348,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 total = 0;
             }
             
-            totalValue.textContent = total;
+            totalValue.textContent = Math.ceil(total);
         };
         
         calcBlock.addEventListener('change', (event) => {
