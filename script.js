@@ -364,6 +364,21 @@ window.addEventListener('DOMContentLoaded', function() {
                 item.value = item.value.replace(/^[\D]/g, '');
             });
         });
+    },
+
+    //send-ajax-form
+    sendForm = () => {
+        const errorMessage = 'Что-то пошло не так!',
+            loadMessage = 'Загрузка...',
+            successMessage = 'Спасибо! Мы скоро с вами свяжемся.';
+        
+        const form = document.getElementById('form1');
+
+        const statusMessage = document.createElement('div');
+        statusMessage.textContent = 'Тут будет наше сообщение';
+        form1.append(statusMessage);
+        
+
     };
 
     countTimer('25 april 2021');
@@ -374,6 +389,7 @@ window.addEventListener('DOMContentLoaded', function() {
     slider();
     regCheking();
     calc(100);
+    sendForm();
 
     
     
