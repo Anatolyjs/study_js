@@ -1,5 +1,9 @@
 window.addEventListener('DOMContentLoaded', function() {
     'use strict';
+    const form1 = document.getElementById('form1'),
+        form2 = document.getElementById('form2'),
+        form3 = document.getElementById('form3');  
+
     // таймер
      const countTimer = (deadline) => {
         let timerHours = document.getElementById('timer-hours'),
@@ -270,12 +274,14 @@ window.addEventListener('DOMContentLoaded', function() {
         const checkInputsBlur = (target) => {
             if (target.matches('.calc-block input')) {
                 target.value = target.value.replace(/\D/g, '');
-            } else if (target.matches('[placeholder="Ваше имя"]') || target.matches('[placeholder="Ваше сообщение"]')) {
-                target.value = target.value.replace(/[^а-я- ]/gi, '');
+            } else if (target.matches('[placeholder="Ваше имя"]')) {
+                target.value = target.value.replace(/[^а-я ]/gi, '');
+            }else if (target.matches('[placeholder="Ваше сообщение"]')) {
+                target.value = target.value.replace(/[^а-я\d - .,!?'";: ]/gi, '');
             } else if (target.matches('[placeholder="E-mail"]') || target.matches('[placeholder="Ваш E-mail"]')) {
                 target.value = target.value.replace(/[^a-z-@_.!~*']/gi, '');
             } else if (target.matches('[placeholder="Номер телефона"]') || target.matches('[placeholder="Ваш номер телефона"]')) {
-                target.value = target.value.replace(/[^\d()-]/gi, '');
+                target.value = target.value.replace(/[^\d\+]/gi, '');
             }
         };
 
@@ -367,45 +373,53 @@ window.addEventListener('DOMContentLoaded', function() {
     },
 
     //send-ajax-form
-    sendForm = () => {
+    sendForm = (form) => {
         const errorMessage = 'Что-то пошло не так!',
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с вами свяжемся.';
-        
-        const form = document.getElementById('form1');
 
         const statusMessage = document.createElement('div');
         statusMessage.style.cssText = 'font-size: 2rem';
-        
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            form.appendChild(statusMessage);
+        statusMessage.style.color = '#fff';
 
+        const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
+
             request.addEventListener('readystatechange', () => {
-                statusMessage.textContent = loadMessage;
                 if (request.readyState !== 4) {
                     return;
                 }
                 if (request.status === 200) {
-                    statusMessage.textContent = successMessage;
+                    outputData();
                 } else {
-                    statusMessage.textContent = errorMessage;
+                    errorData(request.status);  
                 }
             });
+            
             request.open('POST', 'server.php');
             request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(body));
+        };
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            form.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
             const formData = new FormData(form);
             let body = {};
-            
             for (let val of formData.entries()) {
                 body[val[0]] = val[1];
             }
-            request.send(JSON.stringify(body));
-            
+            form.querySelectorAll('input').forEach((item) => {
+                item.value = '';
+            });
+            postData(body, () => {
+                statusMessage.textContent = successMessage;
+            }, (error) => {
+                console.error(error);
+                statusMessage.textContent = errorMessage;
+            });
         });
-        
-
     };
 
     countTimer('25 april 2021');
@@ -416,7 +430,9 @@ window.addEventListener('DOMContentLoaded', function() {
     slider();
     regCheking();
     calc(100);
-    sendForm();
+    sendForm(form1);
+    sendForm(form2);
+    sendForm(form3);
 
     
     
