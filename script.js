@@ -402,32 +402,41 @@ window.addEventListener('DOMContentLoaded', function() {
         };
         
         form.addEventListener('submit', (event) => {
+            const inputs = form.querySelectorAll('input');
+            let count = 0;
+
             event.preventDefault();
             form.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-            const formData = new FormData(form);
-            let body = {};
-            for (let val of formData.entries()) {
-                body[val[0]] = val[1];
+            for (let i = 0; i < form.length - 1; i++) {
+                if (inputs[i].value.trim() !== '') {
+                    count++;
+                }
             }
-            form.querySelectorAll('input').forEach((item) => {
-                item.value = '';
-            });
-            postData(body, () => {
-                statusMessage.textContent = successMessage;
-                setTimeout(() => { 
-                    statusMessage.textContent = '';
-                    document.querySelector('.popup').style.display = 'none';
-                }, 3000);
-            }, (error) => {
-                console.error(error);
-                statusMessage.textContent = errorMessage; 
-                setTimeout(() => { 
-                    statusMessage.textContent = '';
-                    document.querySelector('.popup').style.display = 'none';
-                }, 3000);
-            });
-           
+            if (count === inputs.length) {
+                statusMessage.textContent = loadMessage;
+                const formData = new FormData(form);
+                let body = {};
+                for (let val of formData.entries()) {
+                    body[val[0]] = val[1];
+                }
+                inputs.forEach((item) => {
+                    item.value = '';
+                });
+                postData(body, () => {
+                    statusMessage.textContent = successMessage;
+                    setTimeout(() => { 
+                        statusMessage.textContent = '';
+                        document.querySelector('.popup').style.display = 'none';
+                    }, 3000);
+                }, (error) => {
+                    console.error(error);
+                    statusMessage.textContent = errorMessage; 
+                    setTimeout(() => { 
+                        statusMessage.textContent = '';
+                        document.querySelector('.popup').style.display = 'none';
+                    }, 3000);
+                });
+            }
         });
     };
 
