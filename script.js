@@ -415,14 +415,19 @@ window.addEventListener('DOMContentLoaded', function() {
             });
             postData(body, () => {
                 statusMessage.textContent = successMessage;
+                setTimeout(() => { 
+                    statusMessage.textContent = '';
+                    document.querySelector('.popup').style.display = 'none';
+                }, 3000);
             }, (error) => {
                 console.error(error);
-                statusMessage.textContent = errorMessage;
+                statusMessage.textContent = errorMessage; 
+                setTimeout(() => { 
+                    statusMessage.textContent = '';
+                    document.querySelector('.popup').style.display = 'none';
+                }, 3000);
             });
-            setTimeout(() => { 
-                statusMessage.textContent = '';
-                document.querySelector('.popup').style.display = 'none';
-            }, 3000);
+           
         });
     };
 
