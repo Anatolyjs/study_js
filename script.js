@@ -382,23 +382,25 @@ window.addEventListener('DOMContentLoaded', function() {
         statusMessage.style.cssText = 'font-size: 2rem';
         statusMessage.style.color = '#fff';
 
-        const postData = (body, outputData, errorData) => {
-            const request = new XMLHttpRequest();
+        const postData = (body) => {
+            return new Promise((resolve, reject) => {
+                const request = new XMLHttpRequest();
 
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4) {
-                    return;
-                }
-                if (request.status === 200) {
-                    outputData();
-                } else {
-                    errorData(request.status);  
-                }
+                request.addEventListener('readystatechange', () => {
+                    if (request.readyState !== 4) {
+                        return;
+                    }
+                    if (request.status === 200) {
+                        resolve();
+                    } else {
+                        reject(request.status);  
+                    }
+                });
+                
+                request.open('POST', 'server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify(body));
             });
-            
-            request.open('POST', 'server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
         };
         
         form.addEventListener('submit', (event) => {
@@ -422,20 +424,23 @@ window.addEventListener('DOMContentLoaded', function() {
                 inputs.forEach((item) => {
                     item.value = '';
                 });
-                postData(body, () => {
-                    statusMessage.textContent = successMessage;
-                    setTimeout(() => { 
-                        statusMessage.textContent = '';
-                        document.querySelector('.popup').style.display = 'none';
-                    }, 3000);
-                }, (error) => {
-                    console.error(error);
-                    statusMessage.textContent = errorMessage; 
-                    setTimeout(() => { 
-                        statusMessage.textContent = '';
-                        document.querySelector('.popup').style.display = 'none';
-                    }, 3000);
-                });
+                postData(body)
+                    .then(() => {
+                        statusMessage.textContent = successMessage;
+                        setTimeout(() => { 
+                            statusMessage.textContent = '';
+                            document.querySelector('.popup').style.display = 'none';
+                        }, 3000);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        console.log('hi');
+                        statusMessage.textContent = errorMessage; 
+                        setTimeout(() => { 
+                            statusMessage.textContent = '';
+                            document.querySelector('.popup').style.display = 'none';
+                        }, 3000);
+                    });
             }
         });
     };
