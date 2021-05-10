@@ -23,12 +23,12 @@ const sendForm = (form) => {
 
         event.preventDefault();
         form.appendChild(statusMessage);
-        for (let i = 0; i < form.length - 1; i++) {
+        for (let i = 0; i < 3; i++) {
             if (inputs[i].value.trim() !== '') {
                 count++;
             }
         }
-        if (count === inputs.length) {
+        if (count === 3) {
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form);
             let body = {};

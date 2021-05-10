@@ -1,9 +1,16 @@
 'use strict';
+import countTimer from './modules/countTimer';
+
+if (document.readyState === 'loading') {
+    countTimer('25 may 2021');
+}
+
+
 const form1 = document.getElementById('form1'),
     form2 = document.getElementById('form2'),
     form3 = document.getElementById('form3');  
 
-import countTimer from './modules/countTimer';
+
 import calc from './modules/calc';
 import regCheking from './modules/regCheking';
 import scrollsMenu from './modules/scrollsMenu';
@@ -14,7 +21,8 @@ import togglePopup from './modules/togglePopup';
 import togleMenu from './modules/togleMenu';
 
 
-countTimer('25 may 2021');
+
+
 togleMenu();
 togglePopup();
 scrollsMenu();
