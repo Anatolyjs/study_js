@@ -1,9 +1,5 @@
 'use strict';
-import countTimer from './modules/countTimer';
 
-if (document.readyState === 'loading') {
-    countTimer('25 may 2021');
-}
 
 
 const form1 = document.getElementById('form1'),
@@ -19,10 +15,10 @@ import slider from './modules/slider';
 import tabs from './modules/tabs';
 import togglePopup from './modules/togglePopup';
 import togleMenu from './modules/togleMenu';
+import countTimer from './modules/countTimer';
 
 
-
-
+countTimer('25 may 2021');
 togleMenu();
 togglePopup();
 scrollsMenu();
